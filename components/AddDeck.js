@@ -1,12 +1,10 @@
-import React, { Component } from 'react'
-import { View, Text } from 'react-native'
+import React from 'react';
+import { View, Text } from 'react-native';
 
-const AddDeck = () => {
-  return (
-    <View>
-      <Text>Add Card</Text>
-    </View>
-  )
-}
+const AddDeck = () => (
+  <View>
+    <Text>Add Card</Text>
+  </View>
+);
 
-export default AddDeck
+export default AddDeck;

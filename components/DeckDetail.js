@@ -1,12 +1,15 @@
-import React, { Component } from 'react'
-import { View, Text } from 'react-native'
+/* eslint-disable import/no-unresolved */
 
-const DeckDetail = () => {
-  return (
-    <View>
-      <Text>Deck Detail</Text>
-    </View>
-  )
-}
+import React from 'react';
+import { View, Text } from 'react-native';
 
-export default DeckDetail
+const DeckDetail = () => (
+  <View>
+
+
+    
+    <Text>Deck Detail</Text>
+  </View>
+);
+
+export default DeckDetail;

@@ -1,28 +1,12 @@
-import { GET_ALL_DECKS, ADD_DECK, GET_DECK, ADD_CARD } from '../types'
+/* eslint-disable import/prefer-default-export */
 
-export function getAllDecks() {
-  return {
-    type: GET_ALL_DECKS,
-    decks
-  }
-}
-export function addDeck(deck) {
-  return {
-    type: ADD_DECK,
-    deck
-  }
-}
+// API
+import { _getAllDecks } from '../utils/_DATA';
 
-// export function getDeck(decks, id) {
-//   return {
-//     type: GET_DECK,
-//     deck: decks[id]
-//   }
-// }
+// Action Creator
+import { getAllDecks } from './decks';
 
-// export function addCard(card) {
-//   return {
-//     type: ADD_CARD,
-//     deck
-//   }
-// }
+export const getInitialData = () => async (dispatch) => {
+  const decks = await _getAllDecks();
+  return dispatch(getAllDecks(decks));
+};
