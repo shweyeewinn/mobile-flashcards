@@ -1,56 +1,60 @@
 let decks = [
   {
-    id: "loxhs1bqm25b708cmbf3g",
+    id: 'loxhs1bqm25b708cmbf3g',
     title: 'React',
     questions: [
       {
-        id: "8xf0y6ziyjabvozdd253nd",
+        id: '8xf0y6ziyjabvozdd253nd',
         question: 'What is React?',
-        answer: 'A library for managing user interfaces'
+        answer: 'A library for managing user interfaces',
       },
       {
-        id: "6ni6ok3ym7mf1p33lnez",
+        id: '6ni6ok3ym7mf1p33lnez',
         question: 'Where do you make Ajax requests in React?',
-        answer: 'The componentDidMount lifecycle event'
-      }
-    ]
+        answer: 'The componentDidMount lifecycle event',
+      },
+    ],
   },
   {
-    id: "vthrdm985a262al8qx3do",
+    id: 'vthrdm985a262al8qx3do',
     title: 'JavaScript',
     questions: [
       {
-        id: "am8ehyc8byjqgar0jgpub9",
+        id: 'am8ehyc8byjqgar0jgpub9',
         question: 'What is a closure?',
-        answer: 'The combination of a function and the lexical environment within which that function was declared.'
-      }
-    ]
-  }
-]
+        answer:
+          'The combination of a function and the lexical environment within which that function was declared.',
+      },
+    ],
+  },
+];
 
-function generateDeckId() {
-  return Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15)
+function generateId() {
+  return (
+    Math.random().toString(36).substring(2, 15) +
+    Math.random().toString(36).substring(2, 15)
+  );
 }
 
-export function _getAllDecks() {
-  return new Promise((res, rej) => {
+export function getAllDecks() {
+  return new Promise((res, _rej) => {
     setTimeout(() => res(decks), 1000);
   });
 }
 
-function formatDeck({ title }) {
+function formatDeck(title) {
   return {
-    id: generateDeckId(),
+    id: generateId(),
     title,
     questions: [],
-  }
+  };
 }
 
-export function _saveDeck(deck) {
-  return new Promise((res, rej) => {
-    const formattedDeck = formatDeck(deck);
+export function getNewDeck(deckTitle) {
+  return new Promise((res, _rej) => {
+    const formattedDeck = formatDeck(deckTitle);
     setTimeout(() => {
-      decks.push(formattedDeck);
+      // decks.push(formattedDeck);
       res(formattedDeck);
     }, 1000);
   });
@@ -58,18 +62,28 @@ export function _saveDeck(deck) {
 
 function formatQuestion(question, answer) {
   return {
-    id: generateDeckId(),
+    id: generateId(),
     question,
-    answer
-  }
+    answer,
+  };
 }
 
-export function _saveQuestion({ deckid, question, answer }) {
-  return new Promise((res, rej) => {
-    const formattedQuestion = formatQuestion(question, answer);
+export function getNewCard(question, answer) {
+  return new Promise((res, _rej) => {
+    const formattedCard = formatQuestion(question, answer);
     setTimeout(() => {
-      decks[deckid].questions.push(formattedQuestion)
-      res(decks);
-    }, 500);
+      res(formattedCard);
+    }, 1000);
   });
 }
+
+// export function saveCard(deckId, question, answer) {
+//   return new Promise((res) => {
+//     const formattedQuestion = formatQuestion(question, answer);
+//     setTimeout(() => {
+//       const deck = decks.find((deck) => deck.id === deckId);
+//       deck.questions.push(formattedQuestion);
+//       res(decks);
+//     }, 500);
+//   });
+// }
