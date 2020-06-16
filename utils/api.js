@@ -1,25 +1,25 @@
 import { AsyncStorage } from 'react-native';
 import { getAllDecks, getNewDeck, getNewCard } from './_DATA';
+import { Notifications } from 'expo';
+import * as Permissions from 'expo-permissions';
 
 export const DECKS_STORAGE_KEY = 'flashcards:decks';
+export const NOTIFICATION_KEY = 'flashcards:notifications';
 
-async function setDummyData() {
-  const items = await getAllDecks();
-  try {
-    const decks = await AsyncStorage.setItem(
-      DECKS_STORAGE_KEY,
-      JSON.stringify(items)
-    );
-    return decks;
-  } catch (error) {
-    return console.log(error.message);
-  }
+function setDummyData(decks) {
+  AsyncStorage.setItem(DECKS_STORAGE_KEY, JSON.stringify(decks));
 }
 
 export async function fetchDecks() {
-  let result = await AsyncStorage.getItem(DECKS_STORAGE_KEY);
-
-  return result ? JSON.parse(result) : setDummyData();
+  let decks = JSON.parse(
+    (await AsyncStorage.getItem(DECKS_STORAGE_KEY)) || '[]'
+  );
+  if (decks.length == 0) {
+    const data = await getAllDecks();
+    setDummyData(data);
+    decks = data;
+  }
+  return decks;
 }
 
 export async function fetchDeck(id) {
@@ -30,7 +30,7 @@ export async function fetchDeck(id) {
 export async function saveDeck(title) {
   const deck = await getNewDeck(title);
   const decks = JSON.parse(
-    (await AsyncStorage.getItem(DECKS_STORAGE_KEY)) || []
+    (await AsyncStorage.getItem(DECKS_STORAGE_KEY)) || '[]'
   );
   decks.push(deck);
   await AsyncStorage.setItem(DECKS_STORAGE_KEY, JSON.stringify(decks));
@@ -59,4 +59,53 @@ export async function saveCardToDeck(deckId, question, answer) {
   await AsyncStorage.setItem(DECKS_STORAGE_KEY, JSON.stringify(decks));
 
   return card;
+}
+
+export function clearLocalNotification() {
+  return AsyncStorage.removeItem(NOTIFICATION_KEY).then(
+    Notifications.cancelAllScheduledNotificationsAsync
+  );
+}
+
+function createNotification() {
+  return {
+    title: 'Complete a quiz!',
+    body: "👋 don't forget to complete a quiz for today!",
+    ios: {
+      sound: true,
+    },
+    android: {
+      sound: true,
+      priority: 'high',
+      sticky: false,
+      vibrate: true,
+    },
+  };
+}
+
+export function setLocalNotification() {
+  AsyncStorage.getItem(NOTIFICATION_KEY)
+    .then(JSON.parse)
+    .then((data) => {
+      if (data === null) {
+        Permissions.askAsync(Permissions.NOTIFICATIONS).then(({ status }) => {
+          console.log('status', status);
+          if (status === 'granted') {
+            Notifications.cancelAllScheduledNotificationsAsync();
+
+            let tomorrow = new Date();
+            tomorrow.setDate(tomorrow.getDate() + 1);
+            tomorrow.setHours(20);
+            tomorrow.setMinutes(0);
+
+            Notifications.scheduleLocalNotificationAsync(createNotification(), {
+              time: tomorrow,
+              repeat: 'day',
+            });
+
+            AsyncStorage.setItem(NOTIFICATION_KEY, JSON.stringify(true));
+          }
+        });
+      }
+    });
 }

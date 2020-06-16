@@ -15,7 +15,7 @@ class DeckList extends Component {
 
   render() {
     const { decks } = this.props;
-    console.log();
+    console.log('Updated decks', decks);
     return (
       <>
         {decks.length > 0 ? (
@@ -66,6 +66,6 @@ const styles = StyleSheet.create({
     paddingBottom: 20,
     fontWeight: 'bold',
     textAlign: 'center',
-    fontFamily: 'Poppins_400Regular',
+    // fontFamily: 'Poppins_400Regular',
   },
 });

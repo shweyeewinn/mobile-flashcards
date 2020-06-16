@@ -9,17 +9,15 @@ import {
 import { white, gray, purple, red, black, lightPurp } from '../utils/colors';
 import TextButton from './TextButton';
 import { connect } from 'react-redux';
-import { CommonActions } from '@react-navigation/native';
 import { fetchDeckAction, removeDeckAction } from '../actions';
-import { FlatList } from 'react-native-gesture-handler';
-import Card from './Card';
+
+import { HeaderBackButton, StackActions } from '@react-navigation/native';
+import { NavigationActions } from '@react-navigation/native';
 
 class DeckDetail extends Component {
-  setTitle = () => {
-    const { navigation, route } = this.props;
-    const deckTitle = route.params.title;
-    // console.log('HHH ', route.params.title);
-    navigation.setOptions({
+  setTitle = (title) => {
+    const deckTitle = title;
+    this.props.navigation.setOptions({
       title: deckTitle,
     });
   };
@@ -34,27 +32,16 @@ class DeckDetail extends Component {
   deleteDeck = (id) => {
     this.props.removeDeckAction(id);
 
-    //Route to DeckList View (DECKS)
-    // this.toHome();
+    //Route to Deck List Screen
     console.log('Here =>', this.props);
-    this.props.navigation.goBack();
+
+    this.props.navigation.navigate('TabNav', { screen: 'DeckList' });
   };
 
-  // toHome = () => {
-  //   this.props.navigation.dispatch(
-  //     CommonActions.goBack({
-  //       key: 'Decks',
-  //     })
-  //   );
-  // };
-
   render() {
-    this.setTitle();
-    console.log('this.props', this.props);
     const { navigate } = this.props.navigation;
-
     const { deck } = this.props;
-
+    this.setTitle(deck.title);
     return (
       <View style={styles.container}>
         <View style={[styles.center, { justifyContent: 'flex-start' }]}>
@@ -134,21 +121,21 @@ const styles = StyleSheet.create({
     paddingBottom: 20,
     fontWeight: 'bold',
     textAlign: 'center',
-    fontFamily: 'Poppins_400Regular',
+    // fontFamily: 'Poppins_400Regular',
   },
   cardDesc: {
     fontSize: 16,
     paddingBottom: 20,
     color: gray,
     textAlign: 'center',
-    fontFamily: 'Poppins_400Regular',
+    // fontFamily: 'Poppins_400Regular',
   },
   deleteBtnText: {
     color: red,
     fontSize: 18,
     textAlign: 'center',
     paddingTop: 20,
-    fontFamily: 'Poppins_400Regular',
+    // fontFamily: 'Poppins_400Regular',
   },
   iosButton: {
     padding: 10,
@@ -173,7 +160,7 @@ const styles = StyleSheet.create({
   btnText: {
     fontSize: 18,
     textAlign: 'center',
-    fontFamily: 'Poppins_400Regular',
+    // fontFamily: 'Poppins_400Regular',
   },
   center: {
     flex: 1,

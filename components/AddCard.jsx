@@ -7,7 +7,6 @@ import {
   Platform,
   StyleSheet,
 } from 'react-native';
-import { CommonActions } from '@react-navigation/native';
 import { connect } from 'react-redux';
 import { white, gray, purple, red, black, lightPurp } from '../utils/colors';
 import { saveCardToDeckAction } from '../actions';
@@ -26,21 +25,22 @@ class AddCard extends Component {
   onChangeAnswer = (text) => this.setState({ answer: text });
 
   handleSubmit = async () => {
-    const { id } = this.props.route.params;
+    const { id, title } = this.props.route.params;
     await this.props.saveCardToDeckAction(
       id,
       this.state.question,
       this.state.answer
     );
 
+    // Route to Individual Deck Screen
+    this.props.navigation.push('DeckDetail', {
+      id,
+      title,
+    });
+
     this.setState({
       question: '',
       answer: '',
-    });
-
-    // Route to Individual Deck Screen
-    this.props.navigation.navigate('DeckDetail', {
-      id,
     });
   };
 
@@ -90,6 +90,7 @@ class AddCard extends Component {
                   ]
             }
             onPress={this.handleSubmit}
+            disabled={question === '' && answer === ''}
           >
             <Text style={[styles.btnText, { color: white }]}>Submit</Text>
           </TouchableOpacity>
@@ -119,14 +120,14 @@ const styles = StyleSheet.create({
     paddingBottom: 20,
     fontWeight: 'bold',
     textAlign: 'center',
-    fontFamily: 'Poppins_400Regular',
+    // fontFamily: 'Poppins_400Regular',
   },
   cardDesc: {
     fontSize: 16,
     paddingBottom: 20,
     color: gray,
     textAlign: 'center',
-    fontFamily: 'Poppins_400Regular',
+    // fontFamily: 'Poppins_400Regular',
   },
 
   iosButton: {
@@ -152,7 +153,7 @@ const styles = StyleSheet.create({
   btnText: {
     fontSize: 18,
     textAlign: 'center',
-    fontFamily: 'Poppins_400Regular',
+    // fontFamily: 'Poppins_400Regular',
   },
   center: {
     flex: 1,

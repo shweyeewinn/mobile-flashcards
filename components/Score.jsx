@@ -12,7 +12,7 @@ import { white, gray, purple, red, black, lightPurp } from '../utils/colors';
 const Score = (props) => {
   const { navigation } = props;
   const { id, correctAnswers, totalQuestion } = props.route.params;
-  const score = (correctAnswers / totalQuestion) * 100;
+  const score = ((correctAnswers / totalQuestion) * 100).toFixed(0);
 
   return (
     <View style={styles.container}>
@@ -77,21 +77,21 @@ const styles = StyleSheet.create({
     paddingBottom: 20,
     fontWeight: 'bold',
     textAlign: 'center',
-    fontFamily: 'Poppins_400Regular',
+    // fontFamily: 'Poppins_400Regular',
   },
   cardDesc: {
     fontSize: 16,
     paddingBottom: 20,
     color: gray,
     textAlign: 'center',
-    fontFamily: 'Poppins_400Regular',
+    // fontFamily: 'Poppins_400Regular',
   },
   deleteBtnText: {
     color: red,
     fontSize: 18,
     textAlign: 'center',
     paddingTop: 20,
-    fontFamily: 'Poppins_400Regular',
+    // fontFamily: 'Poppins_400Regular',
   },
   iosButton: {
     padding: 10,
@@ -116,7 +116,7 @@ const styles = StyleSheet.create({
   btnText: {
     fontSize: 18,
     textAlign: 'center',
-    fontFamily: 'Poppins_400Regular',
+    // fontFamily: 'Poppins_400Regular',
   },
   center: {
     flex: 1,

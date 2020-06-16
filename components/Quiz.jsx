@@ -202,7 +202,7 @@ const styles = StyleSheet.create({
     paddingBottom: 20,
     fontWeight: 'bold',
     textAlign: 'center',
-    fontFamily: 'Poppins_400Regular',
+    // fontFamily: 'Poppins_400Regular',
   },
   question: {
     fontSize: 22,
@@ -210,14 +210,14 @@ const styles = StyleSheet.create({
     color: black,
     textAlign: 'center',
     fontWeight: 'bold',
-    fontFamily: 'Poppins_400Regular',
+    // fontFamily: 'Poppins_400Regular',
   },
   cardDesc: {
     fontSize: 16,
     paddingBottom: 20,
     color: gray,
     textAlign: 'center',
-    fontFamily: 'Poppins_400Regular',
+    // fontFamily: 'Poppins_400Regular',
   },
   cardContainer: {
     flex: 2,
@@ -273,7 +273,7 @@ const styles = StyleSheet.create({
     fontSize: 18,
     textAlign: 'center',
     paddingTop: 20,
-    fontFamily: 'Poppins_400Regular',
+    // fontFamily: 'Poppins_400Regular',
   },
   iosButton: {
     padding: 10,
@@ -298,7 +298,7 @@ const styles = StyleSheet.create({
   btnText: {
     fontSize: 16,
     textAlign: 'center',
-    fontFamily: 'Poppins_400Regular',
+    // fontFamily: 'Poppins_400Regular',
   },
   center: {
     flex: 1,

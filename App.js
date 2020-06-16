@@ -1,6 +1,6 @@
 import 'react-native-gesture-handler';
-import React from 'react';
-import { Platform, StyleSheet } from 'react-native';
+import React, { Component } from 'react';
+import { Platform } from 'react-native';
 
 // Redux
 import { createStore } from 'redux';
@@ -12,8 +12,10 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { FontAwesome, Ionicons } from '@expo/vector-icons';
 import reducer from './reducers';
 import middleware from './middleware';
+import { setLocalNotification } from './utils/api';
 
 // Navigations
+import { HeaderBackButton } from '@react-navigation/stack';
 
 // Components
 import DeckList from './components/Decks';
@@ -38,7 +40,7 @@ const Tab =
 
 const RouteConfigs = {
   DeckList: {
-    name: 'Decks',
+    name: 'DeckList',
     component: DeckList,
     options: {
       tabBarIcon: ({ tintColor }) => (
@@ -111,7 +113,7 @@ const StackNavigatorConfig = {
 
 const StackConfig = {
   TabNav: {
-    name: 'Decks',
+    name: 'TabNav',
     component: TabNav,
     options: {
       headerTintColor: white,
@@ -122,29 +124,25 @@ const StackConfig = {
       title: 'Mobile Flashcards',
     },
   },
-  AddDeck: {
-    name: 'AddDeck',
-    component: AddDeck,
-    options: {
-      headerTintColor: white,
-      headerStyle: {
-        backgroundColor: purple,
-      },
-      headerTitleAlign: 'center',
-      title: 'Add Deck',
-    },
-  },
   DeckDetail: {
     name: 'DeckDetail',
     component: DeckDetail,
-    options: {
+    options: ({ navigation, route }) => ({
       headerTintColor: white,
       headerStyle: {
         backgroundColor: purple,
       },
       headerTitleAlign: 'center',
-      title: 'Deck Detail',
-    },
+      title: 'DeckDetail',
+      headerLeft: (props) => (
+        <HeaderBackButton
+          {...props}
+          onPress={() => {
+            navigation.navigate('TabNav', { screen: 'DeckList' });
+          }}
+        />
+      ),
+    }),
   },
   AddCard: {
     name: 'AddCard',
@@ -189,7 +187,6 @@ const Stack = createStackNavigator();
 const MainNav = () => (
   <Stack.Navigator {...StackNavigatorConfig}>
     <Stack.Screen {...StackConfig.TabNav} />
-    <Stack.Screen {...StackConfig.AddDeck} />
     <Stack.Screen {...StackConfig.DeckDetail} />
     <Stack.Screen {...StackConfig.AddCard} />
     <Stack.Screen {...StackConfig.Quiz} />
@@ -197,22 +194,30 @@ const MainNav = () => (
   </Stack.Navigator>
 );
 
-const App = () => {
-  let [fontsLoaded] = useFonts({
-    Poppins_400Regular,
-  });
+const store = createStore(reducer, middleware);
 
-  const store = createStore(reducer, middleware);
-  if (!fontsLoaded) {
-    return <AppLoading />;
+class App extends Component {
+  componentDidMount() {
+    console.log('CDM');
+    // setLocalNotification();
   }
-  return (
-    <Provider store={store}>
-      <NavigationContainer>
-        <MainNav />
-      </NavigationContainer>
-    </Provider>
-  );
-};
 
+  // let [fontsLoaded] = useFonts({
+  //   Poppins_400Regular,
+  // });
+
+  // if (!fontsLoaded) {
+  //   return <AppLoading />;
+  // }
+
+  render() {
+    return (
+      <Provider store={store}>
+        <NavigationContainer>
+          <MainNav />
+        </NavigationContainer>
+      </Provider>
+    );
+  }
+}
 export default App;

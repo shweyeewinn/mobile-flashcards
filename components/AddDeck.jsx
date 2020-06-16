@@ -7,10 +7,11 @@ import {
   Platform,
   StyleSheet,
 } from 'react-native';
-import { CommonActions } from '@react-navigation/native';
+
 import { connect } from 'react-redux';
 import { white, gray, purple, red, black, lightPurp } from '../utils/colors';
 import { saveDeckAction } from '../actions';
+import { CommonActions } from '@react-navigation/native';
 
 class AddDeck extends Component {
   state = {
@@ -23,13 +24,17 @@ class AddDeck extends Component {
 
   saveDeck = async () => {
     const deckId = await this.props.saveDeckAction(this.state.title);
-    this.setState({ title: '' });
 
-    // Route to Individual Deck Detail
+    // Route to Individual Deck Screen
     this.props.navigation.navigate('DeckDetail', {
       id: deckId,
+      title: this.state.title,
     });
+
+    this.setState({ title: '' });
   };
+
+  toHome = () => {};
 
   render() {
     const { title } = this.state;
@@ -51,7 +56,7 @@ class AddDeck extends Component {
             placeholder='Fill in the title of deck'
           />
         </View>
-        <View style={[styles.center, { justifyContent: 'center' }]}>
+        <View style={[styles.center, { justifyContent: 'flex-start' }]}>
           <TouchableOpacity
             style={
               Platform.OS === 'ios'
@@ -65,6 +70,7 @@ class AddDeck extends Component {
                   ]
             }
             onPress={this.saveDeck}
+            disabled={title === ''}
           >
             <Text style={[styles.btnText, { color: white }]}>Create Deck</Text>
           </TouchableOpacity>
@@ -93,14 +99,14 @@ const styles = StyleSheet.create({
     paddingBottom: 20,
     fontWeight: 'bold',
     textAlign: 'center',
-    fontFamily: 'Poppins_400Regular',
+    // fontFamily: 'Poppins_400Regular',
   },
   cardDesc: {
     fontSize: 16,
     paddingBottom: 20,
     color: gray,
     textAlign: 'center',
-    fontFamily: 'Poppins_400Regular',
+    // fontFamily: 'Poppins_400Regular',
   },
 
   iosButton: {
@@ -126,7 +132,7 @@ const styles = StyleSheet.create({
   btnText: {
     fontSize: 18,
     textAlign: 'center',
-    fontFamily: 'Poppins_400Regular',
+    // fontFamily: 'Poppins_400Regular',
   },
   center: {
     flex: 1,

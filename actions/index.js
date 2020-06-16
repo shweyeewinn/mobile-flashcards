@@ -15,9 +15,26 @@ import {
   saveCardToDeck,
 } from '../utils/api';
 
+// export const getAllDecks = (decks) => {
+//   console.log('AA', decks);
+//   return {
+//     type: GET_ALL_DECKS,
+//     decks,
+//   };
+// };
+
+// export const fetchAllDecksAction = () => {
+//   return async (dispatch) => {
+//     const result = await fetchDecks();
+//     dispatch(getAllDecks(result));
+
+//   };
+// };
+
 export const fetchAllDecksAction = () => {
   return async (dispatch) => {
     const decks = await fetchDecks();
+    console.log('Action get decks ', decks);
     dispatch({
       type: GET_ALL_DECKS,
       decks: decks,
