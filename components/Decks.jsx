@@ -41,7 +41,7 @@ class DeckList extends Component {
 const mapStateToProps = ({ decks }) => ({ decks: decks.allDecks });
 
 const mapDispatchToProps = (dispatch) => ({
-  fetchAllDecksAction: (decks) => dispatch(fetchAllDecksAction(decks)),
+  fetchAllDecksAction: () => dispatch(fetchAllDecksAction()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(DeckList);

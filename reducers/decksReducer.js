@@ -20,27 +20,21 @@ function decksReducer(state = initialState, action) {
       };
 
     case GET_ALL_DECKS:
-      console.log('action.decks ', action.decks);
-      console.log('state.allDecks ', state.allDecks);
       return {
-        // allDecks: [...action.decks],
-        allDecks:
-          state.allDecks.length === 0 ? [...action.decks] : [...state.allDecks],
-        deckDetails: {},
+        ...state,
+        allDecks: [...action.decks],
       };
 
     case SAVE_DECK:
       return {
-        // ...state,
-        allDecks: [...state.allDecks, action.deck],
+        ...state,
         deckDetails: action.deck,
       };
 
     case REMOVE_DECK:
       return {
-        // ...state,
+        ...state,
         allDecks: [...state.allDecks.filter((deck) => deck.id !== action.id)],
-        deckDetails: {},
       };
 
     case ADD_CARD_TO_DECK:

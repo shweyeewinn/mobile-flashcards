@@ -10,7 +10,7 @@ import { white, gray, purple, red, black, lightPurp } from '../utils/colors';
 import TextButton from './TextButton';
 import { connect } from 'react-redux';
 import { fetchDeckAction, removeDeckAction } from '../actions';
-
+import { fetchAllDecksAction } from '../actions';
 import { HeaderBackButton, StackActions } from '@react-navigation/native';
 import { NavigationActions } from '@react-navigation/native';
 
@@ -29,12 +29,10 @@ class DeckDetail extends Component {
     this.props.fetchDeckAction(id);
   }
 
-  deleteDeck = (id) => {
-    this.props.removeDeckAction(id);
-
+  deleteDeck = async (id) => {
+    await this.props.removeDeckAction(id);
+    this.props.fetchAllDecksAction();
     //Route to Deck List Screen
-    console.log('Here =>', this.props);
-
     this.props.navigation.navigate('TabNav', { screen: 'DeckList' });
   };
 
@@ -104,6 +102,7 @@ const mapStateToProps = ({ decks }) => {
 const mapDispatchToProps = (dispatch) => ({
   fetchDeckAction: (id) => dispatch(fetchDeckAction(id)),
   removeDeckAction: (id) => dispatch(removeDeckAction(id)),
+  fetchAllDecksAction: (decks) => dispatch(fetchAllDecksAction(decks)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(DeckDetail);
