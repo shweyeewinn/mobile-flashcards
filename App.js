@@ -51,7 +51,7 @@ const RouteConfigs = {
           style={{
             paddingTop: 5,
             paddingBottom: 5,
-            fontFamily: 'Poppins_400Regular',
+            // fontFamily: 'Poppins_400Regular',
           }}
         />
       ),
@@ -70,7 +70,7 @@ const RouteConfigs = {
           style={{
             paddingTop: 5,
             paddingBottom: 5,
-            fontFamily: 'Poppins_400Regular',
+            // fontFamily: 'Poppins_400Regular',
           }}
         />
       ),
@@ -121,7 +121,7 @@ const StackConfig = {
         backgroundColor: purple,
       },
       headerTitleAlign: 'center',
-      title: 'Mobile Flashcards',
+      title: 'Flashcards',
     },
   },
   DeckDetail: {
