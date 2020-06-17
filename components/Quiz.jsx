@@ -202,14 +202,14 @@ const styles = StyleSheet.create({
     paddingBottom: 20,
     fontWeight: 'bold',
     textAlign: 'center',
-    fontFamily: 'Montserrat-Bold',
+    fontFamily: 'OpenSans-Bold',
   },
   cardDesc: {
     fontSize: 16,
     paddingBottom: 20,
     color: gray,
     textAlign: 'center',
-    fontFamily: 'Montserrat-Medium',
+    fontFamily: 'OpenSans-SemiBold',
   },
   question: {
     fontSize: 22,
@@ -217,7 +217,7 @@ const styles = StyleSheet.create({
     color: black,
     textAlign: 'center',
     fontWeight: 'bold',
-    fontFamily: 'Montserrat-Bold',
+    fontFamily: 'OpenSans-Bold',
   },
 
   cardContainer: {
@@ -274,7 +274,7 @@ const styles = StyleSheet.create({
     fontSize: 18,
     textAlign: 'center',
     paddingTop: 20,
-    fontFamily: 'Montserrat-Regular',
+    fontFamily: 'OpenSans-Regular',
   },
   iosButton: {
     padding: 10,
@@ -298,7 +298,7 @@ const styles = StyleSheet.create({
   btnText: {
     fontSize: 16,
     textAlign: 'center',
-    fontFamily: 'Montserrat-Regular',
+    fontFamily: 'OpenSans-Regular',
   },
   center: {
     flex: 1,

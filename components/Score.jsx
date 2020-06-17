@@ -77,21 +77,21 @@ const styles = StyleSheet.create({
     paddingBottom: 20,
     fontWeight: 'bold',
     textAlign: 'center',
-    fontFamily: 'Montserrat-Bold',
+    fontFamily: 'OpenSans-Bold',
   },
   cardDesc: {
     fontSize: 16,
     paddingBottom: 20,
     color: gray,
     textAlign: 'center',
-    fontFamily: 'Montserrat-Medium',
+    fontFamily: 'OpenSans-SemiBold',
   },
   deleteBtnText: {
     color: red,
     fontSize: 18,
     textAlign: 'center',
     paddingTop: 20,
-    fontFamily: 'Montserrat-Regular',
+    fontFamily: 'OpenSans-Regular',
   },
   iosButton: {
     padding: 10,
@@ -116,7 +116,7 @@ const styles = StyleSheet.create({
   btnText: {
     fontSize: 18,
     textAlign: 'center',
-    fontFamily: 'Montserrat-Regular',
+    fontFamily: 'OpenSans-Regular',
   },
   center: {
     flex: 1,

@@ -65,6 +65,6 @@ const styles = StyleSheet.create({
     paddingTop: 20,
     paddingBottom: 20,
     textAlign: 'center',
-    fontFamily: 'Montserrat-Bold',
+    fontFamily: 'OpenSans-Bold',
   },
 });

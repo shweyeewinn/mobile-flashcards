@@ -52,7 +52,7 @@ const RouteConfigs = {
           style={{
             paddingTop: 5,
             paddingBottom: 5,
-            fontFamily: 'Montserrat-Bold',
+            fontFamily: 'OpenSans-Bold',
           }}
         />
       ),
@@ -71,7 +71,7 @@ const RouteConfigs = {
           style={{
             paddingTop: 5,
             paddingBottom: 5,
-            fontFamily: 'Montserrat-Bold',
+            fontFamily: 'OpenSans-Bold',
           }}
         />
       ),
@@ -209,9 +209,9 @@ class App extends Component {
 
   async componentDidMount() {
     await Font.loadAsync({
-      'Montserrat-Bold': require('./assets/fonts/Montserrat-Bold.ttf'),
-      'Montserrat-Medium': require('./assets/fonts/Montserrat-Medium.ttf'),
-      'Montserrat-Regular': require('./assets/fonts/Montserrat-Regular.ttf'),
+      'OpenSans-Bold': require('./assets/fonts/OpenSans-Bold.ttf'),
+      'OpenSans-SemiBold': require('./assets/fonts/OpenSans-SemiBold.ttf'),
+      'OpenSans-Regular': require('./assets/fonts/OpenSans-Regular.ttf'),
     });
     this.setState({
       fontLoaded: true,
