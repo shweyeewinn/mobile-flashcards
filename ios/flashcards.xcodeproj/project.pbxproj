@@ -14,6 +14,8 @@
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		3DE4DAD41476765101945408 /* libPods-flashcards.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D43FF9D506E70904424FA7E9 /* libPods-flashcards.a */; };
 		99EC63CFB4B549BBAF093D10 /* SplashScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E3ABB89D1E68496EB7D95742 /* SplashScreen.storyboard */; };
+		7F45A35AE9914C49931ABF68 /* coolvetica.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 2B015806EEA843828228F4E5 /* coolvetica.ttf */; };
+		2DC34461AA42402FA5E4941A /* KingthingsClarity.ttf in Resources */ = {isa = PBXBuildFile; fileRef = D3F4D4B9C8FB4CC185A14BE3 /* KingthingsClarity.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,6 +35,8 @@
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		ED2971642150620600B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = Platforms/AppleTVOS.platform/Developer/SDKs/AppleTVOS12.0.sdk/System/Library/Frameworks/JavaScriptCore.framework; sourceTree = DEVELOPER_DIR; };
 		E3ABB89D1E68496EB7D95742 /* SplashScreen.storyboard */ = {isa = PBXFileReference; name = "SplashScreen.storyboard"; path = "flashcards/SplashScreen.storyboard"; sourceTree = "<group>"; fileEncoding = 4; lastKnownFileType = file.storyboard; };
+		2B015806EEA843828228F4E5 /* coolvetica.ttf */ = {isa = PBXFileReference; name = "coolvetica.ttf"; path = "../assets/fonts/coolvetica.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		D3F4D4B9C8FB4CC185A14BE3 /* KingthingsClarity.ttf */ = {isa = PBXFileReference; name = "KingthingsClarity.ttf"; path = "../assets/fonts/KingthingsClarity.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +103,7 @@
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				72E5486571395D51695C2A02 /* Pods */,
+				34FBB68BF7FC4AE289C5C995 /* Resources */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -112,6 +117,16 @@
 			);
 			name = Products;
 			sourceTree = "<group>";
+		};
+		34FBB68BF7FC4AE289C5C995 /* Resources */ = {
+			isa = "PBXGroup";
+			children = (
+				2B015806EEA843828228F4E5 /* coolvetica.ttf */,
+				D3F4D4B9C8FB4CC185A14BE3 /* KingthingsClarity.ttf */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+			path = "";
 		};
 /* End PBXGroup section */
 
@@ -178,6 +193,8 @@
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
 				99EC63CFB4B549BBAF093D10 /* SplashScreen.storyboard in Resources */,
+				7F45A35AE9914C49931ABF68 /* coolvetica.ttf in Resources */,
+				2DC34461AA42402FA5E4941A /* KingthingsClarity.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

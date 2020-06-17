@@ -8,7 +8,7 @@ import {
   StyleSheet,
 } from 'react-native';
 import { connect } from 'react-redux';
-import { white, gray, purple, red, black, lightPurp } from '../utils/colors';
+import { white, gray, purple, black, lightPurp } from '../utils/colors';
 import { saveCardToDeckAction } from '../actions';
 
 class AddCard extends Component {
@@ -57,7 +57,7 @@ class AddCard extends Component {
               height: 40,
               borderColor: 'gray',
               borderWidth: 1,
-              color: red,
+              color: black,
             }}
             onChangeText={(text) => this.onChangeQuestion(text)}
             value={question}
@@ -69,7 +69,7 @@ class AddCard extends Component {
               height: 40,
               borderColor: 'gray',
               borderWidth: 1,
-              color: red,
+              color: black,
             }}
             onChangeText={(text) => this.onChangeAnswer(text)}
             value={answer}
@@ -120,14 +120,14 @@ const styles = StyleSheet.create({
     paddingBottom: 20,
     fontWeight: 'bold',
     textAlign: 'center',
-    // fontFamily: 'Poppins_400Regular',
+    fontFamily: 'Montserrat-Bold',
   },
   cardDesc: {
     fontSize: 16,
     paddingBottom: 20,
     color: gray,
     textAlign: 'center',
-    // fontFamily: 'Poppins_400Regular',
+    fontFamily: 'Montserrat-Medium',
   },
 
   iosButton: {
@@ -145,7 +145,6 @@ const styles = StyleSheet.create({
     paddingRight: 30,
     height: 50,
     borderRadius: 4,
-    // alignSelf: 'flex-end',
     justifyContent: 'center',
     alignItems: 'center',
     borderWidth: 1,
@@ -153,7 +152,7 @@ const styles = StyleSheet.create({
   btnText: {
     fontSize: 18,
     textAlign: 'center',
-    // fontFamily: 'Poppins_400Regular',
+    fontFamily: 'Montserrat-Regular',
   },
   center: {
     flex: 1,

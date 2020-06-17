@@ -64,8 +64,7 @@ const styles = StyleSheet.create({
     fontSize: 30,
     paddingTop: 20,
     paddingBottom: 20,
-    fontWeight: 'bold',
     textAlign: 'center',
-    // fontFamily: 'Poppins_400Regular',
+    fontFamily: 'Montserrat-Bold',
   },
 });

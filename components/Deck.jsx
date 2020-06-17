@@ -74,12 +74,12 @@ const styles = StyleSheet.create({
     paddingBottom: 20,
     fontWeight: 'bold',
     textAlign: 'center',
-    // fontFamily: 'Poppins_400Regular',
+    fontFamily: 'Montserrat-Bold',
   },
   cardDesc: {
     fontSize: 16,
     color: gray,
     textAlign: 'center',
-    // fontFamily: 'Poppins_400Regular',
+    fontFamily: 'Montserrat-Medium',
   },
 });

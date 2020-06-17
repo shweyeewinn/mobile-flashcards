@@ -77,21 +77,21 @@ const styles = StyleSheet.create({
     paddingBottom: 20,
     fontWeight: 'bold',
     textAlign: 'center',
-    // fontFamily: 'Poppins_400Regular',
+    fontFamily: 'Montserrat-Bold',
   },
   cardDesc: {
     fontSize: 16,
     paddingBottom: 20,
     color: gray,
     textAlign: 'center',
-    // fontFamily: 'Poppins_400Regular',
+    fontFamily: 'Montserrat-Medium',
   },
   deleteBtnText: {
     color: red,
     fontSize: 18,
     textAlign: 'center',
     paddingTop: 20,
-    // fontFamily: 'Poppins_400Regular',
+    fontFamily: 'Montserrat-Regular',
   },
   iosButton: {
     padding: 10,
@@ -116,7 +116,7 @@ const styles = StyleSheet.create({
   btnText: {
     fontSize: 18,
     textAlign: 'center',
-    // fontFamily: 'Poppins_400Regular',
+    fontFamily: 'Montserrat-Regular',
   },
   center: {
     flex: 1,

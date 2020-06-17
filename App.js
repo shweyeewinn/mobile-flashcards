@@ -1,6 +1,6 @@
 import 'react-native-gesture-handler';
 import React, { Component } from 'react';
-import { Platform } from 'react-native';
+import { Platform, ActivityIndicator, StyleSheet } from 'react-native';
 
 // Redux
 import { createStore } from 'redux';
@@ -29,6 +29,7 @@ import Score from './components/Score';
 import { purple, white } from './utils/colors';
 
 import { AppLoading } from 'expo';
+import * as Font from 'expo-font';
 
 //Fonts
 import { useFonts, Poppins_400Regular } from '@expo-google-fonts/poppins';
@@ -51,7 +52,7 @@ const RouteConfigs = {
           style={{
             paddingTop: 5,
             paddingBottom: 5,
-            // fontFamily: 'Poppins_400Regular',
+            fontFamily: 'Montserrat-Bold',
           }}
         />
       ),
@@ -70,7 +71,7 @@ const RouteConfigs = {
           style={{
             paddingTop: 5,
             paddingBottom: 5,
-            // fontFamily: 'Poppins_400Regular',
+            fontFamily: 'Montserrat-Bold',
           }}
         />
       ),
@@ -134,6 +135,8 @@ const StackConfig = {
       },
       headerTitleAlign: 'center',
       title: 'DeckDetail',
+      headerBackTitle: 'Flashcards',
+      headerBackTitleVisible: false,
       headerLeft: (props) => (
         <HeaderBackButton
           {...props}
@@ -197,27 +200,56 @@ const MainNav = () => (
 const store = createStore(reducer, middleware);
 
 class App extends Component {
-  componentDidMount() {
-    console.log('CDM');
-    // setLocalNotification();
+  constructor(props) {
+    super(props);
+    this.state = {
+      fontLoaded: false,
+    };
   }
 
-  // let [fontsLoaded] = useFonts({
-  //   Poppins_400Regular,
-  // });
-
-  // if (!fontsLoaded) {
-  //   return <AppLoading />;
-  // }
+  async componentDidMount() {
+    await Font.loadAsync({
+      'Montserrat-Bold': require('./assets/fonts/Montserrat-Bold.ttf'),
+      'Montserrat-Medium': require('./assets/fonts/Montserrat-Medium.ttf'),
+      'Montserrat-Regular': require('./assets/fonts/Montserrat-Regular.ttf'),
+    });
+    this.setState({
+      fontLoaded: true,
+    });
+    // setLocalNotification();
+  }
 
   render() {
     return (
       <Provider store={store}>
         <NavigationContainer>
-          <MainNav />
+          {this.state.fontLoaded ? (
+            <MainNav />
+          ) : (
+            <ActivityIndicator
+              color='#292477'
+              size='large'
+              style={styles.activityIndicator}
+            />
+          )}
         </NavigationContainer>
       </Provider>
     );
   }
 }
 export default App;
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: 70,
+  },
+  activityIndicator: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    height: 80,
+  },
+});

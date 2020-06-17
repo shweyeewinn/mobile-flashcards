@@ -27,7 +27,7 @@ function decksReducer(state = initialState, action) {
 
     case SAVE_DECK:
       return {
-        ...state,
+        allDecks: [...state.allDecks, action.deck],
         deckDetails: action.deck,
       };
 
@@ -41,6 +41,7 @@ function decksReducer(state = initialState, action) {
       const deck = state.allDecks.find(
         (deck) => deck.id === action.payload.deckId
       );
+      console.log('deck', deck);
       deck.questions.push(action.payload.card);
       return {
         allDecks: [...state.allDecks],
