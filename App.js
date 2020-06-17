@@ -168,6 +168,7 @@ const StackConfig = {
         backgroundColor: purple,
       },
       headerTitleAlign: 'center',
+      headerBackTitleVisible: false,
       title: 'Quiz',
     },
   },

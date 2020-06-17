@@ -97,7 +97,7 @@ class Quiz extends Component {
                     style={styles.flipBtnText}
                     onPress={() => this.card.flip()}
                   >
-                    Answer
+                    Show Answer
                   </TextButton>
                 </View>
 

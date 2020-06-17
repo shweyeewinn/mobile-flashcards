@@ -1,17 +1,19 @@
 let decks = [
   {
     id: 'loxhs1bqm25b708cmbf3g',
-    title: 'React',
+    title: 'Frontend',
     questions: [
       {
         id: '8xf0y6ziyjabvozdd253nd',
-        question: 'What is React?',
-        answer: 'A library for managing user interfaces',
+        question: 'What is HTML5?',
+        answer:
+          'HTML5 is the latest version of Hypertext Markup Language, the code that describes web pages.',
       },
       {
         id: '6ni6ok3ym7mf1p33lnez',
-        question: 'Where do you make Ajax requests in React?',
-        answer: 'The componentDidMount lifecycle event',
+        question: 'What is CSS3?',
+        answer:
+          'CSS3 is the latest evolution of the Cascading Style Sheets language and aims at extending CSS2.1.',
       },
     ],
   },
