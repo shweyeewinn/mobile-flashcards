@@ -1,26 +1,26 @@
 # Mobile Flashcards Project
 
-This is a mobile application (iOS) that allows users to study collections of flashcards.
+This is a mobile (iOS) application that allows users to study collections of flashcards.
 The app will allow users to create different categories of flashcards called "decks", add flashcards to those decks, then take quizzes on those decks.
 
-In this app, users will be able to
+In this application, users will be able to
 
 - create a deck which can hold an unlimited number of cards.
 - add a card to a specific deck.
-- flip the card to view the question in the front of the card and answer in the back of the card.
+- flip the card to view the question in the front of the card and the answer in the back of the card.
 - quiz themselves on a specific deck and receive a score once they're done.
 - Users should receive a notification to remind themselves to study if they haven't already for that day.
 
 ## Demo
 
-Project Demo can be viewed [here](https://www.loom.com/share/e36d5fd060f0411fac8f5999bc4911bb).
+Project Demo can be viewed [here](https://www.loom.com/share/713c979fdd204f97bc28fa40c9118347).
 
 ## Installation
 
 Install all project dependencies with `yarn install`.
 Start the development server `yarn start`.
-Run the app in web browser `yarn web`.
-Run the app in ios simulator `yarn ios`.
+Run the application in web browser `yarn web`.
+Run the application in ios simulator `yarn ios`.
 
 ## Author
 
@@ -41,14 +41,14 @@ Run the app in ios simulator `yarn ios`.
 
 ### Deck List View (Default View)
 
-The primary view, seen when the app loads, is a list of created decks which includes
+The primary view, seen when the app loads, is a list of created decks which includes:
 
 - the name of each deck and
 - the number of cards in each deck.
 
 ### Individual Deck View
 
-The individual deck view includes:
+The Individual Deck view includes:
 
 - The deck title
 - Number of cards in the deck
@@ -68,12 +68,13 @@ The individual deck view includes:
 
 ### New Deck View
 
-- The view includes a form for creating a new deck - which are an input for the title and a 'Create Deck' button.
+- The New Deck view includes a form for creating a new deck - which are an input for the title and a 'Create Deck' button.
 - Pressing the button correctly creates the deck and routes the user to the Individual Deck view for the new deck.
 
 ### New Question View
 
-The New Question view includes a form with fields for a question and answer, and a submit button. Submitting the form correctly adds the question to the deck.
+- The New Question view includes a form with fields for a question and answer, and a submit button.
+- Submitting the form correctly adds the question to the deck.
 
 ### Notification
 

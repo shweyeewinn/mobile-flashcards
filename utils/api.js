@@ -1,10 +1,14 @@
 import { AsyncStorage } from 'react-native';
 import { getAllDecks, getNewDeck, getNewCard } from './_DATA';
-import { Notifications } from 'expo';
-import * as Permissions from 'expo-permissions';
+import { purple } from './colors';
 
-export const DECKS_STORAGE_KEY = 'flashcards:decks';
-export const NOTIFICATION_KEY = 'flashcards:notifications';
+import * as Permissions from 'expo-permissions';
+import { Notifications } from 'expo';
+// import * as Notifications from 'expo-notifications';
+// import * as Constants from 'expo-constants';
+
+const DECKS_STORAGE_KEY = 'flashcards:decks';
+const NOTIFICATION_KEY = 'flashcards:notifications';
 
 function setDummyData(decks) {
   AsyncStorage.setItem(DECKS_STORAGE_KEY, JSON.stringify(decks));
@@ -61,51 +65,50 @@ export async function saveCardToDeck(deckId, question, answer) {
   return card;
 }
 
-export function clearLocalNotification() {
+export const clearLocalNotification = () => {
   return AsyncStorage.removeItem(NOTIFICATION_KEY).then(
     Notifications.cancelAllScheduledNotificationsAsync
   );
-}
+};
 
-function createNotification() {
-  return {
-    title: 'Complete a quiz!',
-    body: "👋 don't forget to complete a quiz for today!",
-    ios: {
-      sound: true,
-    },
-    android: {
-      sound: true,
-      priority: 'high',
-      sticky: false,
-      vibrate: true,
-    },
-  };
-}
+export const setLocalNotification = async () => {
+  let data = JSON.parse(await AsyncStorage.getItem(NOTIFICATION_KEY));
+  console.log('data', data);
+  console.log('Permissions', Permissions);
+  if (data === null) {
+    const { status } = await Permissions.askAsync(Permissions.NOTIFICATIONS);
 
-export function setLocalNotification() {
-  AsyncStorage.getItem(NOTIFICATION_KEY)
-    .then(JSON.parse)
-    .then((data) => {
-      if (data === null) {
-        Permissions.askAsync(Permissions.NOTIFICATIONS).then(({ status }) => {
-          console.log('status', status);
-          if (status === 'granted') {
-            Notifications.cancelAllScheduledNotificationsAsync();
+    if (status === 'granted') {
+      console.log('Notification permissions granted.');
+      Notifications.cancelAllScheduledNotificationsAsync();
 
-            let tomorrow = new Date();
-            tomorrow.setDate(tomorrow.getDate() + 1);
-            tomorrow.setHours(20);
-            tomorrow.setMinutes(0);
+      let tomorrow = new Date();
+      tomorrow.setDate(tomorrow.getDate() + 1);
+      tomorrow.setHours(20);
+      tomorrow.setMinutes(0);
+      console.log('tomorrow', tomorrow);
 
-            Notifications.scheduleLocalNotificationAsync(createNotification(), {
-              time: tomorrow,
-              repeat: 'day',
-            });
-
-            AsyncStorage.setItem(NOTIFICATION_KEY, JSON.stringify(true));
-          }
-        });
-      }
-    });
-}
+      Notifications.scheduleLocalNotificationAsync(
+        {
+          title: 'Remember to complete the quiz!',
+          body: "👋 don't forget to complete the quiz for today!",
+          ios: {
+            sound: true,
+          },
+          android: {
+            // sound: true,
+            // priority: 'high',
+            sticky: false,
+            vibrate: true,
+            color: purple,
+          },
+        },
+        {
+          time: tomorrow,
+          repeat: 'day',
+        }
+      );
+      AsyncStorage.setItem(NOTIFICATION_KEY, JSON.stringify(true));
+    }
+  }
+};

@@ -124,7 +124,6 @@ const styles = StyleSheet.create({
     paddingRight: 30,
     height: 50,
     borderRadius: 4,
-    // alignSelf: 'flex-end',
     justifyContent: 'center',
     alignItems: 'center',
     borderWidth: 1,

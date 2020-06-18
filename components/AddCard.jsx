@@ -7,9 +7,12 @@ import {
   Platform,
   StyleSheet,
 } from 'react-native';
+
 import { connect } from 'react-redux';
-import { white, gray, purple, black, lightPurp } from '../utils/colors';
+
 import { saveCardToDeckAction } from '../actions';
+
+import { white, gray, purple, black, lightPurp } from '../utils/colors';
 
 class AddCard extends Component {
   constructor(props) {

@@ -1,20 +1,21 @@
 import 'react-native-gesture-handler';
 import React, { Component } from 'react';
 import { Platform, ActivityIndicator, StyleSheet } from 'react-native';
+import * as Font from 'expo-font';
+import { FontAwesome, Ionicons } from '@expo/vector-icons';
+import { purple, white } from './utils/colors';
 
 // Redux
 import { createStore } from 'redux';
 import { Provider } from 'react-redux';
+import reducer from './reducers';
+import middleware from './middleware';
+
+//React-Navigation
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import { createStackNavigator } from '@react-navigation/stack';
-import { FontAwesome, Ionicons } from '@expo/vector-icons';
-import reducer from './reducers';
-import middleware from './middleware';
-import { setLocalNotification } from './utils/api';
-
-// Navigations
 import { HeaderBackButton } from '@react-navigation/stack';
 
 // Components
@@ -25,14 +26,10 @@ import AddCard from './components/AddCard';
 import Quiz from './components/Quiz';
 import Score from './components/Score';
 
-// Colors and icons
-import { purple, white } from './utils/colors';
+// import { AppLoading } from 'expo';
 
-import { AppLoading } from 'expo';
-import * as Font from 'expo-font';
-
-//Fonts
-import { useFonts, Poppins_400Regular } from '@expo-google-fonts/poppins';
+//Notification
+import { setLocalNotification } from './utils/api';
 
 const Tab =
   Platform.OS === 'ios'
@@ -217,7 +214,7 @@ class App extends Component {
     this.setState({
       fontLoaded: true,
     });
-    // setLocalNotification();
+    //setLocalNotification();
   }
 
   render() {

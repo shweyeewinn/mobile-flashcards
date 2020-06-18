@@ -18,7 +18,8 @@ import {
   lightPurp,
 } from '../utils/colors';
 import CardFlip from 'react-native-card-flip';
-import Score from './Score';
+
+import { clearLocalNotification, setLocalNotification } from '../utils/api';
 
 class Quiz extends Component {
   constructor(props) {
@@ -47,12 +48,10 @@ class Quiz extends Component {
             ? state.correctAnswers + 1
             : state.correctAnswers,
           count: state.count + 1,
+          completeQuizForToday: true,
         };
       },
       () => {
-        // console.log('totalQuestion', totalQuestion);
-        // console.log('count', this.state.count);
-
         if (this.state.count >= totalQuestion) {
           navigation.navigate('Score', {
             id,
@@ -64,6 +63,7 @@ class Quiz extends Component {
             count: 0,
             correctAnswers: 0,
           });
+          //clearLocalNotification();
         }
       }
     );
@@ -302,8 +302,6 @@ const styles = StyleSheet.create({
   },
   center: {
     flex: 1,
-    // justifyContent: 'center',
-    // alignItems: 'center',
     marginLeft: 30,
     marginRight: 30,
   },

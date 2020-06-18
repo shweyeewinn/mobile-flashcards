@@ -56,7 +56,6 @@ export function getNewDeck(deckTitle) {
   return new Promise((res, _rej) => {
     const formattedDeck = formatDeck(deckTitle);
     setTimeout(() => {
-      // decks.push(formattedDeck);
       res(formattedDeck);
     }, 1000);
   });
@@ -78,14 +77,3 @@ export function getNewCard(question, answer) {
     }, 1000);
   });
 }
-
-// export function saveCard(deckId, question, answer) {
-//   return new Promise((res) => {
-//     const formattedQuestion = formatQuestion(question, answer);
-//     setTimeout(() => {
-//       const deck = decks.find((deck) => deck.id === deckId);
-//       deck.questions.push(formattedQuestion);
-//       res(decks);
-//     }, 500);
-//   });
-// }

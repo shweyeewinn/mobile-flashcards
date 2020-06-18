@@ -11,8 +11,6 @@ import TextButton from './TextButton';
 import { connect } from 'react-redux';
 import { fetchDeckAction, removeDeckAction } from '../actions';
 import { fetchAllDecksAction } from '../actions';
-import { HeaderBackButton, StackActions } from '@react-navigation/native';
-import { NavigationActions } from '@react-navigation/native';
 
 class DeckDetail extends Component {
   setTitle = (title) => {
@@ -151,7 +149,6 @@ const styles = StyleSheet.create({
     paddingRight: 30,
     height: 50,
     borderRadius: 4,
-    // alignSelf: 'flex-end',
     justifyContent: 'center',
     alignItems: 'center',
     borderWidth: 1,
@@ -163,8 +160,6 @@ const styles = StyleSheet.create({
   },
   center: {
     flex: 1,
-    // justifyContent: 'center',
-    // alignItems: 'center',
     marginLeft: 30,
     marginRight: 30,
   },

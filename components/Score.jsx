@@ -6,7 +6,7 @@ import {
   TouchableOpacity,
   Platform,
 } from 'react-native';
-import { CommonActions } from '@react-navigation/native';
+
 import { white, gray, purple, red, black, lightPurp } from '../utils/colors';
 
 const Score = (props) => {
@@ -108,7 +108,6 @@ const styles = StyleSheet.create({
     paddingRight: 30,
     height: 50,
     borderRadius: 4,
-    // alignSelf: 'flex-end',
     justifyContent: 'center',
     alignItems: 'center',
     borderWidth: 1,
@@ -120,8 +119,6 @@ const styles = StyleSheet.create({
   },
   center: {
     flex: 1,
-    // justifyContent: 'center',
-    // alignItems: 'center',
     marginLeft: 30,
     marginRight: 30,
   },

@@ -6,7 +6,7 @@ import { fetchAllDecksAction } from '../actions';
 
 import Deck from './Deck';
 import { FlatList } from 'react-native-gesture-handler';
-import { white, red, lightPurp } from '../utils/colors';
+import { lightPurp } from '../utils/colors';
 
 class DeckList extends Component {
   componentDidMount() {
@@ -15,7 +15,7 @@ class DeckList extends Component {
 
   render() {
     const { decks } = this.props;
-    console.log('Updated decks', decks);
+
     return (
       <>
         {decks.length > 0 ? (
