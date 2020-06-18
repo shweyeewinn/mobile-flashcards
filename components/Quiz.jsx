@@ -63,7 +63,7 @@ class Quiz extends Component {
             count: 0,
             correctAnswers: 0,
           });
-          //clearLocalNotification();
+          // clearLocalNotification().then(setLocalNotification);
         }
       }
     );
