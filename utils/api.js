@@ -73,20 +73,17 @@ export const clearLocalNotification = () => {
 
 export const setLocalNotification = async () => {
   let data = JSON.parse(await AsyncStorage.getItem(NOTIFICATION_KEY));
-  console.log('data', data);
-  console.log('Permissions', Permissions);
+
   if (data === null) {
     const { status } = await Permissions.askAsync(Permissions.NOTIFICATIONS);
 
     if (status === 'granted') {
-      console.log('Notification permissions granted.');
       Notifications.cancelAllScheduledNotificationsAsync();
 
       let tomorrow = new Date();
       tomorrow.setDate(tomorrow.getDate() + 1);
       tomorrow.setHours(20);
       tomorrow.setMinutes(0);
-      console.log('tomorrow', tomorrow);
 
       Notifications.scheduleLocalNotificationAsync(
         {
