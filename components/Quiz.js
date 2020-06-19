@@ -97,7 +97,12 @@ class Quiz extends Component {
       <>
         {questions.length > 0 ? (
           <View style={styles.container}>
-            <View style={[styles.center, { justifyContent: 'flex-start' }]}>
+            <View
+              style={[
+                styles.center,
+                { justifyContent: 'flex-start', marginBottom: 20 },
+              ]}
+            >
               <Text style={styles.cardTitle}>{title}</Text>
               <Text style={styles.cardDesc}>
                 {currentIndex + 1} of {totalQuestion} questions
@@ -139,7 +144,6 @@ class Quiz extends Component {
             </View>
 
             <View style={[styles.center, { justifyContent: 'center' }]}>
-              {/* Correct Button */}
               <View style={{ marginBottom: 20 }}>
                 <TouchableOpacity
                   style={
@@ -167,9 +171,7 @@ class Quiz extends Component {
                   </Text>
                 </TouchableOpacity>
               </View>
-              {/* Correct Button */}
 
-              {/* InCorrect Button */}
               <View style={{ marginBottom: 40 }}>
                 <TouchableOpacity
                   style={
@@ -197,9 +199,7 @@ class Quiz extends Component {
                   </Text>
                 </TouchableOpacity>
               </View>
-              {/* InCorrect Button */}
 
-              {/* Next Button */}
               <View>
                 <TextButton
                   style={[
@@ -220,7 +220,6 @@ class Quiz extends Component {
                   />
                 </TextButton>
               </View>
-              {/* Next Button */}
             </View>
           </View>
         ) : (

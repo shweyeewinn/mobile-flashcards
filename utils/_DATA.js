@@ -5,8 +5,7 @@ let decks = [
     questions: [
       {
         id: '8xf0y6ziyjabvozdd253nd',
-        question:
-          'Is HTML5 the latest version of Hypertext Markup Language, the code that describes web pages?',
+        question: 'Is HTML5 the latest version of Hypertext Markup Language?',
         answer: 'YES',
       },
       {
