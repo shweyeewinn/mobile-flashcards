@@ -93,7 +93,7 @@ class AddCard extends Component {
                   ]
             }
             onPress={this.handleSubmit}
-            disabled={question === '' && answer === ''}
+            disabled={question === '' || answer === ''}
           >
             <Text style={[styles.btnText, { color: white }]}>Submit</Text>
           </TouchableOpacity>

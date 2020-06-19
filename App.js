@@ -26,8 +26,6 @@ import AddCard from './components/AddCard';
 import Quiz from './components/Quiz';
 import Score from './components/Score';
 
-// import { AppLoading } from 'expo';
-
 //Notification
 import { setLocalNotification } from './utils/api';
 
@@ -214,7 +212,7 @@ class App extends Component {
     this.setState({
       fontLoaded: true,
     });
-    //setLocalNotification();
+    setLocalNotification();
   }
 
   render() {

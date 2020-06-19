@@ -5,15 +5,15 @@ let decks = [
     questions: [
       {
         id: '8xf0y6ziyjabvozdd253nd',
-        question: 'What is HTML5?',
-        answer:
-          'HTML5 is the latest version of Hypertext Markup Language, the code that describes web pages.',
+        question:
+          'Is HTML5 the latest version of Hypertext Markup Language, the code that describes web pages?',
+        answer: 'YES',
       },
       {
         id: '6ni6ok3ym7mf1p33lnez',
-        question: 'What is CSS3?',
-        answer:
-          'CSS3 is the latest evolution of the Cascading Style Sheets language and aims at extending CSS2.1.',
+        question:
+          'Is CSS3 the latest evolution of the Cascading Style Sheets language and aims at extending CSS2.1?',
+        answer: 'YES',
       },
     ],
   },
@@ -23,9 +23,9 @@ let decks = [
     questions: [
       {
         id: 'am8ehyc8byjqgar0jgpub9',
-        question: 'What is a closure?',
-        answer:
-          'The combination of a function and the lexical environment within which that function was declared.',
+        question:
+          'Is Javascript Closure the combination of a function and the lexical environment within which that function was declared?',
+        answer: 'YES',
       },
     ],
   },

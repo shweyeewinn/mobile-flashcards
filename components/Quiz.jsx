@@ -6,7 +6,7 @@ import {
   Platform,
   TouchableOpacity,
 } from 'react-native';
-import TextButton from './TextButton';
+
 import { connect } from 'react-redux';
 import {
   white,
@@ -18,7 +18,8 @@ import {
   lightPurp,
 } from '../utils/colors';
 import CardFlip from 'react-native-card-flip';
-
+import TextButton from './TextButton';
+import { FontAwesome, Ionicons } from '@expo/vector-icons';
 import { clearLocalNotification, setLocalNotification } from '../utils/api';
 
 class Quiz extends Component {
@@ -28,51 +29,69 @@ class Quiz extends Component {
       currentIndex: 0,
       count: 0,
       correctAnswers: 0,
+      disabledShowAnswer: true,
+      disabledButtons: false,
+      disabledNextButton: true,
     };
   }
 
-  handlePress = (answer, id) => {
+  handlePress = (answer) => {
+    this.setState((state) => {
+      return {
+        correctAnswers: answer
+          ? state.correctAnswers + 1
+          : state.correctAnswers,
+        disabledShowAnswer: false,
+        disabledButtons: true,
+        disabledNextButton: false,
+      };
+    });
+  };
+
+  nextQuestion = () => {
+    const totalQuestion = this.props.deck.questions.length;
+
+    this.setState((state) => {
+      return {
+        currentIndex:
+          state.currentIndex >= totalQuestion - 1 ? 0 : state.currentIndex + 1,
+        count: state.count + 1,
+        disabledShowAnswer: true,
+        disabledButtons: false,
+        disabledNextButton: true,
+      };
+    });
+  };
+
+  componentDidUpdate(prevProps, prevState) {
     const totalQuestion = this.props.deck.questions.length;
     const { navigation } = this.props;
 
-    this.setState((state) => {});
-
-    this.setState(
-      (state) => {
-        return {
-          currentIndex:
-            state.currentIndex >= totalQuestion - 1
-              ? 0
-              : state.currentIndex + 1,
-          correctAnswers: answer
-            ? state.correctAnswers + 1
-            : state.correctAnswers,
-          count: state.count + 1,
-          completeQuizForToday: true,
-        };
-      },
-      () => {
-        if (this.state.count >= totalQuestion) {
-          navigation.navigate('Score', {
-            id,
-            correctAnswers: this.state.correctAnswers,
-            totalQuestion,
-          });
-          this.setState({
-            currentIndex: 0,
-            count: 0,
-            correctAnswers: 0,
-          });
-          // clearLocalNotification().then(setLocalNotification);
-        }
+    if (prevState.currentIndex !== this.state.currentIndex) {
+      if (this.state.count >= totalQuestion) {
+        navigation.navigate('Score', {
+          id: this.props.deck.id,
+          correctAnswers: this.state.correctAnswers,
+          totalQuestion,
+        });
+        this.setState({
+          currentIndex: 0,
+          count: 0,
+          correctAnswers: 0,
+        });
+        clearLocalNotification().then(setLocalNotification);
       }
-    );
-  };
-
+    }
+  }
   render() {
-    const { title, questions, id } = this.props.deck;
+    const { title, questions } = this.props.deck;
     const totalQuestion = questions.length;
-    const { currentIndex, correctAnswers } = this.state;
+    const {
+      currentIndex,
+      disabledShowAnswer,
+      disabledButtons,
+      disabledNextButton,
+    } = this.state;
 
     return (
       <>
@@ -83,19 +102,22 @@ class Quiz extends Component {
               <Text style={styles.cardDesc}>
                 {currentIndex + 1} of {totalQuestion} questions
               </Text>
-            </View>
-            <View style={[styles.center, { justifyContent: 'flex-start' }]}>
               <CardFlip
                 style={styles.cardContainer}
                 ref={(card) => (this.card = card)}
+                key={currentIndex}
               >
                 <View>
                   <Text style={styles.question}>
                     {questions[currentIndex].question}
                   </Text>
                   <TextButton
-                    style={styles.flipBtnText}
+                    style={[
+                      styles.flipBtnText,
+                      { color: disabledShowAnswer ? gray : red },
+                    ]}
                     onPress={() => this.card.flip()}
+                    disabled={disabledShowAnswer}
                   >
                     Show Answer
                   </TextButton>
@@ -106,15 +128,18 @@ class Quiz extends Component {
                     {questions[currentIndex].answer}
                   </Text>
                   <TextButton
-                    style={styles.flipBtnText}
+                    style={[styles.flipBtnText, { color: red }]}
                     onPress={() => this.card.flip()}
+                    disabled={disabledShowAnswer}
                   >
-                    Question
+                    Show Question
                   </TextButton>
                 </View>
               </CardFlip>
             </View>
+
             <View style={[styles.center, { justifyContent: 'center' }]}>
+              {/* Correct Button */}
               <View style={{ marginBottom: 20 }}>
                 <TouchableOpacity
                   style={
@@ -122,45 +147,80 @@ class Quiz extends Component {
                       ? [
                           styles.iosButton,
                           {
-                            backgroundColor: green,
+                            backgroundColor: disabledButtons ? gray : green,
                             borderColor: black,
                           },
                         ]
                       : [
                           styles.androidButton,
                           {
-                            backgroundColor: green,
+                            backgroundColor: disabledButtons ? gray : green,
                             borderColor: black,
                           },
                         ]
                   }
-                  onPress={() => this.handlePress(true, id)}
+                  onPress={() => this.handlePress(true)}
+                  disabled={disabledButtons}
                 >
                   <Text style={[styles.btnText, { color: white }]}>
                     Correct
                   </Text>
                 </TouchableOpacity>
               </View>
-              <View style={{ marginBottom: 20 }}>
+              {/* Correct Button */}
+
+              {/* InCorrect Button */}
+              <View style={{ marginBottom: 40 }}>
                 <TouchableOpacity
                   style={
                     Platform.OS === 'ios'
                       ? [
                           styles.iosButton,
-                          { backgroundColor: red, borderColor: gray },
+                          {
+                            backgroundColor: disabledButtons ? gray : red,
+                            borderColor: black,
+                          },
                         ]
                       : [
                           styles.androidButton,
-                          { backgroundColor: red, borderColor: gray },
+                          {
+                            backgroundColor: disabledButtons ? gray : red,
+                            borderColor: black,
+                          },
                         ]
                   }
-                  onPress={() => this.handlePress(false, id)}
+                  onPress={() => this.handlePress(false)}
+                  disabled={disabledButtons}
                 >
                   <Text style={[styles.btnText, { color: white }]}>
                     Incorrect
                   </Text>
                 </TouchableOpacity>
               </View>
+              {/* InCorrect Button */}
+
+              {/* Next Button */}
+              <View>
+                <TextButton
+                  style={[
+                    styles.nextBtnText,
+                    { color: disabledNextButton ? gray : red },
+                  ]}
+                  onPress={() => this.nextQuestion()}
+                  disabled={disabledNextButton}
+                >
+                  Next{'   '}
+                  <Ionicons
+                    name='ios-arrow-forward'
+                    size={18}
+                    color={disabledNextButton ? gray : red}
+                    style={{
+                      fontFamily: 'OpenSans-Bold',
+                    }}
+                  />
+                </TextButton>
+              </View>
+              {/* Next Button */}
             </View>
           </View>
         ) : (
@@ -210,6 +270,7 @@ const styles = StyleSheet.create({
     color: gray,
     textAlign: 'center',
     fontFamily: 'OpenSans-SemiBold',
+    marginBottom: 20,
   },
   question: {
     fontSize: 22,
@@ -219,7 +280,6 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     fontFamily: 'OpenSans-Bold',
   },
-
   cardContainer: {
     flex: 2,
   },
@@ -270,7 +330,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   flipBtnText: {
-    color: red,
+    // color: red,
     fontSize: 18,
     textAlign: 'center',
     paddingTop: 20,
@@ -304,5 +364,12 @@ const styles = StyleSheet.create({
     flex: 1,
     marginLeft: 30,
     marginRight: 30,
+  },
+  nextBtnText: {
+    // color: red,
+    fontSize: 18,
+    textAlign: 'right',
+    paddingTop: 20,
+    fontFamily: 'OpenSans-Regular',
   },
 });

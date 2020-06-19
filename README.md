@@ -1,7 +1,9 @@
 # Mobile Flashcards Project
 
-This is a mobile (iOS) application that allows users to study collections of flashcards.
+This is a mobile application that allows users to study collections of flashcards.
 The app will allow users to create different categories of flashcards called "decks", add flashcards to those decks, then take quizzes on those decks.
+
+This app was tested on both iOS and android platforms.
 
 In this application, users will be able to
 
@@ -13,7 +15,7 @@ In this application, users will be able to
 
 ## Demo
 
-Project Demo can be viewed [here](https://www.loom.com/share/713c979fdd204f97bc28fa40c9118347).
+Project Demo can be viewed [here](https://www.loom.com/share/e75f139df472404d8eca974df4560b58).
 
 ## Installation
 
