@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import {
   View,
+  KeyboardAvoidingView,
   Text,
   TextInput,
   TouchableOpacity,
@@ -39,7 +40,7 @@ class AddDeck extends Component {
   render() {
     const { title } = this.state;
     return (
-      <View style={styles.container}>
+      <KeyboardAvoidingView style={styles.container}>
         <View style={[styles.center, { justifyContent: 'flex-start' }]}>
           <Text style={styles.cardTitle}>
             What is the title of your new deck?
@@ -75,7 +76,7 @@ class AddDeck extends Component {
             <Text style={[styles.btnText, { color: white }]}>Create Deck</Text>
           </TouchableOpacity>
         </View>
-      </View>
+      </KeyboardAvoidingView>
     );
   }
 }

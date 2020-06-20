@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import {
   View,
   Text,
+  KeyboardAvoidingView,
   TextInput,
   TouchableOpacity,
   Platform,
@@ -50,7 +51,10 @@ class AddCard extends Component {
   render() {
     const { question, answer } = this.state;
     return (
-      <View style={styles.container}>
+      <KeyboardAvoidingView
+        behavior={Platform.OS == 'ios' ? 'padding' : 'height'}
+        style={styles.container}
+      >
         <View style={[styles.center, { justifyContent: 'flex-start' }]}>
           <Text style={styles.cardTitle}>
             What are the question and answer of your new card?
@@ -98,7 +102,7 @@ class AddCard extends Component {
             <Text style={[styles.btnText, { color: white }]}>Submit</Text>
           </TouchableOpacity>
         </View>
-      </View>
+      </KeyboardAvoidingView>
     );
   }
 }
