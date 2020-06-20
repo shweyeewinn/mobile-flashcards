@@ -42,7 +42,10 @@ class DeckDetail extends Component {
       <View style={styles.container}>
         <View style={[styles.center, { justifyContent: 'flex-start' }]}>
           <Text style={styles.cardTitle}>{deck?.title}</Text>
-          <Text style={styles.cardDesc}>{deck?.questions?.length} cards</Text>
+          <Text style={styles.cardDesc}>
+            {deck?.questions?.length}{' '}
+            {deck?.questions?.length > 1 ? 'Cards' : 'Card'}
+          </Text>
         </View>
         <View style={[styles.center, { justifyContent: 'center' }]}>
           <View style={{ marginBottom: 20 }}>
