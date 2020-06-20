@@ -26,7 +26,8 @@ const Deck = ({ deck }) => {
         <View>
           <Text style={styles.cardTitle}>{title}</Text>
           <Text style={styles.cardDesc}>
-            {questions && questions.length} cards
+            {questions && questions.length}{' '}
+            {questions.length > 1 ? 'Cards' : 'Card'}
           </Text>
         </View>
       </TouchableOpacity>
